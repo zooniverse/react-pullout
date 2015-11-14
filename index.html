@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ReactPullout</title>
+    <style>
+      .pullout-content {
+        background: #eee;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+        padding: 1em 3vw;
+        transition: transform 150ms ease;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="./node_modules/react/dist/react.js"></script>
+    <script src="./node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="./node_modules/babel-core/browser-polyfill.js"></script>
+    <script src="./node_modules/babel-core/browser.js"></script>
+    <script src="./index.js"></script>
+
+    <script type="text/babel">
+      const Pullout = window.ReactPullout;
+
+      const NormalDemo = React.createClass({
+        getInitialState: function () {
+          return {
+            side: 'left',
+            open: false
+          };
+        },
+
+        render () {
+          return (
+            <div>
+              <p>Lorem ipsum dolor sit amet.</p>
+              <p>Lorem ipsum dolor sit amet.</p>
+              <p>Lorem ipsum dolor sit amet.</p>
+              <p>Lorem ipsum dolor sit amet.</p>
+              <p>Lorem ipsum dolor sit amet.</p>
+              <p>
+                <button onClick={() => {this.setState({open: true});}}>Open</button>
+              </p>
+
+              <Pullout side={this.state.side} open={this.state.open}>
+                <p>
+                  <button onClick={() => {this.setState({open: false});}}>Close</button>
+                </p>
+                <p>Foo, bar.</p>
+                <p>Foo, bar.</p>
+                <p>Foo, bar.</p>
+                <p style={{textAlign: 'center'}}>
+                  <button onClick={() => {this.setState({side: 'top'});}}>Top</button>
+                  <br />
+                  <button onClick={() => {this.setState({side: 'left'});}}>Left</button>
+                  <button onClick={() => {this.setState({side: 'right'});}}>Right</button>
+                  <br />
+                  <button onClick={() => {this.setState({side: 'bottom'});}}>Bottom</button>
+                </p>
+                <textarea value="Something to resize" readOnly disabled />
+              </Pullout>
+            </div>
+          );
+        }
+      });
+
+      const container = document.createElement('div');
+      document.body.appendChild(container);
+      ReactDOM.render(<NormalDemo />, container);
+    </script>
+  </body>
+</html>
