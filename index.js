@@ -2,13 +2,24 @@
   'use strict';
 
   var React;
+  var reactMinorVersion;
   var ReactDOM;
   if (typeof require !== 'undefined') {
     React = require('react');
-    ReactDOM = require('react-dom');
+    reactMinorVersion = parseFloat(React.version.split('.')[1]);
+    if (reactMinorVersion <= 13) {
+      ReactDOM = React;
+    } else {
+      ReactDOM = require('react-dom');
+    }
   } else if (typeof window !== 'undefined') {
     React = window.React;
-    ReactDOM = window.ReactDOM;
+    reactMinorVersion = parseFloat(React.version.split('.')[1]);
+    if (reactMinorVersion <= 13) {
+      ReactDOM = React;
+    } else {
+      ReactDOM = window.ReactDOM;
+    }
   }
 
   var BASE_STYLE = {
