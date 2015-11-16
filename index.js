@@ -61,8 +61,8 @@
       }
 
       var pullout = React.createElement('div', {
-        className: 'pullout-content',
-        style: Object.assign({}, BASE_STYLE, STYLE_BY_SIDE[this.props.side], closedStyle)
+        className: ['pullout-content', this.props.className].filter(Boolean).join(' '),
+        style: Object.assign({}, BASE_STYLE, STYLE_BY_SIDE[this.props.side], closedStyle, this.props.style)
       }, this.props.children);
 
       if (this.container === null) {
@@ -98,7 +98,7 @@
 
     render: function () {
       return React.createElement('noscript', {
-        className: 'pullout-anchor'
+        className: ['pullout-anchor', this.props.className].filter(Boolean).join(' ')
       });
     },
 
