@@ -10,7 +10,8 @@
     if (reactMinorVersion <= 13) {
       ReactDOM = React;
     } else {
-      ReactDOM = require('react-dom');
+      // TODO: Support React 0.14:
+      // ReactDOM = require('react-dom');
     }
   } else if (typeof window !== 'undefined') {
     React = window.React;
