@@ -1,26 +1,17 @@
 (function () {
   'use strict';
 
+  var isCommonJS = typeof require !== 'undefined' && typeof module !== 'undefined';
+  var isBrowser = typeof window !== 'undefined';
+
   var React;
-  var reactMinorVersion;
-  var ReactDOM;
-  if (typeof require !== 'undefined') {
+  var ReactDOM; // TODO: Reference the real ReactDOM module for React >= 0.14.
+  if (isCommonJS) {
     React = require('react');
-    reactMinorVersion = parseFloat(React.version.split('.')[1]);
-    if (reactMinorVersion <= 13) {
-      ReactDOM = React;
-    } else {
-      // TODO: Support React 0.14:
-      // ReactDOM = require('react-dom');
-    }
-  } else if (typeof window !== 'undefined') {
+    ReactDOM = React;
+  } else if (isBrowser) {
     React = window.React;
-    reactMinorVersion = parseFloat(React.version.split('.')[1]);
-    if (reactMinorVersion <= 13) {
-      ReactDOM = React;
-    } else {
-      ReactDOM = window.ReactDOM;
-    }
+    ReactDOM = React;
   }
 
   var BASE_STYLE = {
@@ -101,9 +92,9 @@
     open: false
   };
 
-  if (typeof module !== 'undefined') {
+  if (isCommonJS) {
     module.exports = Pullout;
-  } else if (typeof window !== 'undefined') {
+  } else if (isBrowser) {
     window.ReactPullout = Pullout;
   }
 }());
