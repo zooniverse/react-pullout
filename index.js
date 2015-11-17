@@ -48,15 +48,12 @@
   function Pullout () {
     React.Component.apply(this, arguments);
     this.container = null;
-    this.state = {
-      gotFocus: false
-    };
   }
 
   Pullout.prototype = Object.assign(Object.create(React.Component.prototype), {
     renderExternal: function () {
       var closedStyle;
-      if (!this.props.open && !this.state.gotFocus) {
+      if (!this.props.open) {
         closedStyle = CLOSED_STYLE_BY_SIDE[this.props.side];
       }
 
@@ -86,14 +83,6 @@
 
     componentWillUnmount: function () {
       this.unmountExternal();
-    },
-
-    componentWillReceiveProps: function (nextProps) {
-      if (nextProps.open !== this.props.open) {
-        this.setState({
-          gotFocus: false
-        });
-      }
     },
 
     render: function () {
