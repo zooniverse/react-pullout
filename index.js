@@ -5,13 +5,13 @@
   var isBrowser = typeof window !== 'undefined';
 
   var React;
-  var ReactDOM; // TODO: Reference the real ReactDOM module for React >= 0.14.
+  var ReactDOM;
   if (isCommonJS) {
     React = require('react');
-    ReactDOM = React;
+    ReactDOM = require('react-dom');
   } else if (isBrowser) {
     React = window.React;
-    ReactDOM = React;
+    ReactDOM = window.ReactDOM;
   }
 
   var BASE_STYLE = {

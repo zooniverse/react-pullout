@@ -15,6 +15,7 @@
 
   <body>
     <script src="./node_modules/react/dist/react.js"></script>
+    <script src="./node_modules/react-dom/dist/react-dom.js"></script>
     <script src="./node_modules/babel-core/browser-polyfill.js"></script>
     <script src="./node_modules/babel-core/browser.js"></script>
     <script src="./index.js"></script>
@@ -66,7 +67,7 @@
 
       const container = document.createElement('div');
       document.body.appendChild(container);
-      React.render(<NormalDemo />, container);
+      ReactDOM.render(<NormalDemo />, container);
     </script>
   </body>
 </html>
