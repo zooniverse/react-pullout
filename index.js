@@ -36,6 +36,11 @@
     top: {transform: 'translateY(-100%)'}
   };
 
+  // Make old Safari happy.
+  Object.keys(CLOSED_STYLE_BY_SIDE).forEach(function(side) {
+    CLOSED_STYLE_BY_SIDE[side]['WebkitTransform'] = CLOSED_STYLE_BY_SIDE[side].transform;
+  });
+
   function Pullout () {
     React.Component.apply(this, arguments);
     this.container = null;
